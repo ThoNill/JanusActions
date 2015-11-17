@@ -63,7 +63,7 @@ public class NamedActionValue extends PageValue {
 
 	@Override
 	public String toString() {
-		return "Action: " + name + " in " + model.getName();
+		return "Action: " + name + " id= " + getId() + " in " + model.getName();
 	}
 
 
