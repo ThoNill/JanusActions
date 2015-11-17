@@ -72,9 +72,12 @@ public class PageValue extends PageAction implements ReadValue, WriteValue  {
 	@Override
 	public void setObject(DataContext ctx,Serializable value) {
 		if (isOn(ctx) && write != null) {
-			write.setObject(ctx, value);
+			Serializable oldValue = read.getObject(ctx);
+			if (oldValue == null || !oldValue.equals(value)) {
+				write.setObject(ctx, value);
+				fireActionIsPerformed(ctx);
+			} 
 		}
-		fireActionIsPerformed(ctx);
 	}
 
 
