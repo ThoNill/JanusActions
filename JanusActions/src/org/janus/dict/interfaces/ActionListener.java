@@ -1,5 +1,7 @@
 package org.janus.dict.interfaces;
 
+import java.io.Serializable;
+
 import org.janus.data.DataContext;
 
 /**
@@ -10,6 +12,6 @@ import org.janus.data.DataContext;
  *         {@link ActionListener} benachrichtigt
  * 
  */
-public interface ActionListener {
+public interface ActionListener extends Serializable{
 	void actionPerformed(Object a, DataContext data);
 }

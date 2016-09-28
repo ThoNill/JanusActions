@@ -33,10 +33,11 @@ public class NamedActionValue extends PageValue {
 		super(kern);
 		id = ID.getId();
 		if (name == null) {
-			name = "anonym" + id;
+			this.name = "anonym" + id;
+		} else {
+		    this.name = name;
 		}
-		this.name = name;
-		log.debug("Erzeuge " + name + " v" + id);
+		log.debug("Erzeuge " + this.name + " v" + id);
 
 	}
 	

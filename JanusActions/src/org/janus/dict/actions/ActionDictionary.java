@@ -1,8 +1,9 @@
 package org.janus.dict.actions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-
 import java.util.Iterator;
+import java.util.List;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
@@ -21,12 +22,12 @@ import org.janus.dict.interfaces.NeedCompletion;
  * 
  */
 public class ActionDictionary extends DataDescriptionImpl implements Action, NeedCompletion {
-	public static Logger log = Logger.getLogger(ActionDictionary.class);
+	public static final Logger LOG = Logger.getLogger(ActionDictionary.class);
 	
 	private static final long serialVersionUID = 1025512692106740806L;
 
 	private HashMap<String, NamedActionValue> actionMap;
-	private Vector<NamedActionValue> actionVector;
+	private List<NamedActionValue> actionVector;
 	private String name;
 
 
@@ -34,16 +35,16 @@ public class ActionDictionary extends DataDescriptionImpl implements Action, Nee
 		super();
 		this.name = name;
 		actionMap = new HashMap<String, NamedActionValue>();
-		actionVector = new Vector<NamedActionValue>();
+		actionVector = new ArrayList<NamedActionValue>();
 	}
 
-	public Vector<NamedActionValue> getActionVector() {
+	public List<NamedActionValue> getActionVector() {
 		return actionVector;
 	}
 	
 	public synchronized NamedActionValue addAction(String name,Action k) {
 		NamedActionValue a = new NamedActionValue(name,k) ;
-		log.debug("DataModel addAction " + a.getName());
+		LOG.debug("DataModel addAction " + a.getName());
 		if (a.hasContextData()) {
 			a.setContextIndex(getHandle(name));
 		}
@@ -55,7 +56,7 @@ public class ActionDictionary extends DataDescriptionImpl implements Action, Nee
 
 	public NamedActionValue getAction(String name) {
 		if (!actionMap.containsKey(name)) {
-			log.error("Fehler: " + name + " fehlt");
+			LOG.error("Fehler: " + name + " fehlt");
 			return null;
 		}
 		return actionMap.get(name);

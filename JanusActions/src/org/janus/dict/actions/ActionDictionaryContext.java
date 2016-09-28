@@ -2,11 +2,13 @@ package org.janus.dict.actions;
 
 import java.util.PriorityQueue;
 
+import org.apache.log4j.Logger;
 import org.janus.data.DataContextImpl;
 
 
 public class ActionDictionaryContext extends DataContextImpl{
-	
+    private static final Logger LOG = Logger.getLogger(ActionDictionaryContext.class);
+
 	private PriorityQueue<PageAction> actionQueue;
 
 	public ActionDictionaryContext(ActionDictionary dict) {
@@ -24,7 +26,7 @@ public class ActionDictionaryContext extends DataContextImpl{
 			try {
 				performNextAction();
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOG.error("Fehler in Action",e);
 			}
 		}
 

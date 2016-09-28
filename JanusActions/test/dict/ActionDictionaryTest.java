@@ -16,10 +16,10 @@ public class ActionDictionaryTest {
 
 	@Before
 	public void init() {
-		ActionEventSender.log.setLevel(Level.ALL);
+		ActionEventSender.LOG.setLevel(Level.ALL);
 		ConsoleAppender con = new ConsoleAppender(new PatternLayout(
 				"%-5p [%t]: %m%n "));
-		ActionEventSender.log.addAppender(con);
+		ActionEventSender.LOG.addAppender(con);
 	}
 
 	@Test

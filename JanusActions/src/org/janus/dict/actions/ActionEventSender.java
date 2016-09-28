@@ -1,6 +1,8 @@
 package org.janus.dict.actions;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import org.apache.log4j.Logger;
@@ -8,11 +10,11 @@ import org.janus.data.DataContext;
 import org.janus.dict.interfaces.ActionListener;
 
 public class ActionEventSender implements Serializable {
-	public static Logger log = Logger.getLogger(ActionEventSender.class);
+	public static final Logger LOG = Logger.getLogger(ActionEventSender.class);
 
 	private static final long serialVersionUID = -4112308871215103613L;
 	/** Liste der {@link ActionListener} */
-	protected Vector<ActionListener> listeners = null;
+	protected ArrayList<ActionListener> listeners = null;
 
 	
 	
@@ -22,20 +24,20 @@ public class ActionEventSender implements Serializable {
 
 	/** Mitteilung an die {@link ActionListener} */
 	public void fireActionIsPerformed(DataContext data){
-		log.debug("Action " + toString() + " hat "
+		LOG.debug("Action " + toString() + " hat "
 				+ ((listeners == null) ? 0 : listeners.size()) + " Listener ");
 		if (listeners != null) {
 			for (ActionListener l : listeners) {
-				log.debug("fireActionIsPerformed " + l.toString());
+				LOG.debug("fireActionIsPerformed " + l.toString());
 				l.actionPerformed(this, data);
 			}
 		}
 	}
 
 	public void addActionListener(ActionListener l) {
-		log.debug("addActionListener " + l.toString());
+		LOG.debug("addActionListener " + l.toString());
 		if (listeners == null) {
-			listeners = new Vector<ActionListener>();
+			listeners = new ArrayList<ActionListener>();
 		}
 		if (!listeners.contains(l)) {
 			listeners.add(l);
@@ -43,7 +45,7 @@ public class ActionEventSender implements Serializable {
 	}
 	
 	public void removeActionListener(ActionListener l) {
-		log.debug("addActionListener " + l.toString());
+		LOG.debug("addActionListener " + l.toString());
 		if (listeners != null) {
 			if (listeners.contains(l)) {
 				listeners.remove(l);
