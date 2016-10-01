@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
+import java.util.List; import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.janus.actions.Action;
@@ -27,7 +27,7 @@ public class ActionDictionary extends DataDescriptionImpl implements Action, Nee
 	private static final long serialVersionUID = 1025512692106740806L;
 
 	private HashMap<String, NamedActionValue> actionMap;
-	private List<NamedActionValue> actionVector;
+	private List<NamedActionValue> actionList;
 	private String name;
 
 
@@ -35,11 +35,11 @@ public class ActionDictionary extends DataDescriptionImpl implements Action, Nee
 		super();
 		this.name = name;
 		actionMap = new HashMap<String, NamedActionValue>();
-		actionVector = new ArrayList<NamedActionValue>();
+		actionList = new ArrayList<NamedActionValue>();
 	}
 
-	public List<NamedActionValue> getActionVector() {
-		return actionVector;
+	public List<NamedActionValue> getActionList() {
+		return actionList;
 	}
 	
 	public synchronized NamedActionValue addAction(String name,Action k) {
@@ -48,7 +48,7 @@ public class ActionDictionary extends DataDescriptionImpl implements Action, Nee
 		if (a.hasContextData()) {
 			a.setContextIndex(getHandle(name));
 		}
-		actionVector.add(a);
+		actionList.add(a);
 		actionMap.put(a.getName(), a);
 		a.setModel(this);
 		return a;
@@ -63,12 +63,12 @@ public class ActionDictionary extends DataDescriptionImpl implements Action, Nee
 	}
 
 	public Action getAction(int index) {
-		return actionVector.get(index);
+		return actionList.get(index);
 	}
 
 	@Override
 	public int getSize() {
-		return actionVector.size();
+		return actionList.size();
 	}
 
 	public DataContext createDataContext() {
@@ -90,7 +90,7 @@ public class ActionDictionary extends DataDescriptionImpl implements Action, Nee
 	@Override
 	public void completeObject() {
 
-		Iterator<NamedActionValue> i = actionVector.iterator();
+		Iterator<NamedActionValue> i = actionList.iterator();
 		while (i.hasNext()) {
 			Object obj = i.next();
 			if (obj instanceof NeedCompletion) {
@@ -105,7 +105,7 @@ public class ActionDictionary extends DataDescriptionImpl implements Action, Nee
 	public void debug(Logger log, DataContext context) {
 		if (log.isDebugEnabled()) {
 			log.debug("Log ActionDictionary " + getName());
-			for (PageAction a : actionVector) {
+			for (PageAction a : actionList) {
 				a.debug(log,context);
 			}
 		}
@@ -122,7 +122,7 @@ public class ActionDictionary extends DataDescriptionImpl implements Action, Nee
 	};
 	
 	public void configure() {
-		for(Action a : actionVector) {
+		for(Action a : actionList) {
 			a.configure(this);
 		}
 	}
