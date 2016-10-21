@@ -2,8 +2,6 @@ package org.janus.dict.actions;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.List; import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.janus.data.DataContext;

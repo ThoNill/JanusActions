@@ -1,10 +1,10 @@
 package org.janus.dict.actions;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.List; import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 import org.janus.actions.Action;
